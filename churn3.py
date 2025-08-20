@@ -1,4 +1,28 @@
 import streamlit as st
+
+GA_ID = "G-H86CM4M6W"  # <-- replace if different
+
+def inject_ga():
+    st.markdown(
+        f"""
+        <!-- GA4 -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){{dataLayer.push(arguments);}}
+          gtag('js', new Date());
+          gtag('config', '{GA_ID}');
+        </script>
+        """,
+        unsafe_allow_html=True,
+    )
+
+# ensure it injects only once on reruns
+if "ga_injected" not in st.session_state:
+    inject_ga()
+    st.session_state["ga_injected"] = True
+
+import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
@@ -708,4 +732,5 @@ def main():
         """)
 
 if __name__ == "__main__":
+
     main()
