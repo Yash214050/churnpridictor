@@ -1,6 +1,6 @@
 import streamlit as st
 
-GA_ID = "G-H86CM4M6W"  # <-- replace if different
+GA_ID = "G-CH68CM4M6W"  # <-- replace if different
 
 def inject_ga():
     st.markdown(
